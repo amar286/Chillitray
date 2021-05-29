@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block title %} Home {% endblock%}
+{% block content %}
+
+ <style>
+
+
+.btn-dark{
+        border: 1px solid #3498db;
+        background-color: transparent;
+        color: black;
+         border-radius:10px;
+}
+.pagination a{
+      float left;
+      padding:8px 16px;
+      text-decoration: none;
+      border: 1px solid #ddd;
+      color: black;
+
+
+}
+.pagination strong.active{
+
+      background-color: #778899;
+      border: 1px solid #3498db;
+      color: white;
+      padding:8px 16px;
+}
+.pagination a:hover:not(.active){
+      background-color: #ddd;
+
+}
+.pagination a:first-child{
+
+      border-top-left-radius:5px;
+      border-bottom-left-radius:5px;
+}
+
+.pagination a:last-child{
+
+      border-top-right-radius:5px;
+      border-bottom-right-radius:5px;
+}
+.pagination i{
+      padding:8px 16px;
+
+}
+
+
+</style>
+
+<body>
+<div class="alert alert-warning col-12">
+                    <strong>
+                        <h5 style="text-align:center" >Welcome Home</h5>
+                    </strong>
+                </div>
+<a href="All_tasks" class="btn btn-dark my-2">Tasks</a>
+<a href="app2/table" class="btn btn-dark my-2">App 2 Table</a>
+{% if usr %}
+<a href="logout" class="btn btn-dark my-2">LOG-OUT</a>
+{% else %}
+<a href="login" class="btn btn-dark my-2">LOG-IN</a>
+<a href="signup" class="btn btn-dark my-2">SIGN-IN</a>
+{% endif %}
+</body>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'app2/base.html' %}
+{% block title %} app2 Home {% endblock%}
+{% block content %}
+
+<div class="card card-body">
+					<table class="table">
+						<tr>
+							<th>Sr. No.</th>
+							<th>Title</th>
+							<th>Parent ID</th>
+
+
+						</tr>
+                        {% for t in task %}
+
+							<tr>
+								<td>{{forloop.counter}}</td>
+								<td>{{t.title}}</td>
+                                <td> {{t.parent_id}}</td>
+
+
+							</tr>
+
+						  {% endfor %}
+
+					</table>
+				</div>
+
+			</div>
+
+
+
+{% endblock %}

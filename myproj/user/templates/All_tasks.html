@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% block title %} All Tasks {% endblock%}
+{% block content %}
+{% load static %}
+
+<style>
+.pagination a{
+      float: left;
+      padding:8px 16px;
+      text-decoration: none;
+      border: 1px solid #ddd;
+      color: black;
+
+
+}
+.pagination strong.active{
+
+      background-color: #778899;
+      border: 1px solid #3498db;
+      color: white;
+      padding:8px 16px;
+}
+.pagination a:hover:not(.active){
+      background-color: #ddd;
+
+}
+.pagination a:first-child{
+
+      border-top-left-radius:5px;
+      border-bottom-left-radius:5px;
+}
+
+.pagination a:last-child{
+
+      border-top-right-radius:5px;
+      border-bottom-right-radius:5px;
+}
+.pagination i{
+      padding:8px 16px;
+
+}
+
+</style>
+
+<div class="card card-body">
+					<table class="table">
+						<tr>
+							<th>User</th>
+							<th>Task Title</th>
+							<th>Task Description</th>
+							<th>Task File</th>
+							<th>Create On Time</th>
+
+						</tr>
+                        {% for tk in task %}
+
+							<tr>
+								<td>{{tk.user}}</td>
+								<td>{{tk.task_title}}</td>
+                                <td> {{tk.task_des}}</td>
+                                <td><a href="/media/{{tk.task_file}}">{{tk.task_file}}</a></td>
+						        <td>{{tk.create_on_time}}</td>
+
+							</tr>
+
+						  {% endfor %}
+
+					</table>
+				</div>
+
+			</div>
+
+
+    <div class="pagination mt-2 mx-5">
+
+        {% if task.has_previous %}
+           <a href="?page=1"><<</a>
+           <a href="?page={{task.previous_page_number}}"><</a>
+        {% endif %}
+        {% for num in task.paginator.page_range %}
+          {% if task.number == num %}
+            <strong class="active">{{num}}</strong>
+           {% elif num > task.number|add:'-3' and num < task.number|add:'3' %}
+        <a href="?page={{num}}"> {{num}}</a>
+           {% endif %}
+        {% endfor %}
+        {% if task.has_next %}
+
+           <a href="?page={{task.next_page_number}}">></a>
+           <a href="?page={{task.paginator.num_pages}}">>></a>
+        {% endif %}
+</div>
+
+{% endblock %}
